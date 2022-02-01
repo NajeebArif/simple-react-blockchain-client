@@ -14,7 +14,7 @@ export class WebsocketController{
 
     private get url(): string{
         const protocol = window.location.protocol === 'https'? 'wss':'ws';
-        const hostName = window.location.host;
+        const hostName = process.env.REACT_APP_WS_PROXY_HOSTNAME || window.location.host;
         return `${protocol}://${hostName}`;
     }
 
@@ -62,7 +62,7 @@ export class WebsocketController{
         return reply.payload;
     }
 
-    requstNewBlock(transactions: Transaction[]): void{
+    requestNewBlock(transactions: Transaction[]): void{
         this.send({
             type: MessageTypes.NEW_BLOCK_REQUEST,
             correlationId: uuid(),
