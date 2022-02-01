@@ -29,6 +29,11 @@ export class BlockchainNode{
         this._chain = [...blocks];
     }
 
+    async initializeWithGenesisBlock(): Promise<void> {
+        const genesisBlock = await this.mineBlock({ previousHash: '0', timestamp: Date.now(), transactions: [] });
+        this._chain.push(genesisBlock);
+    }
+
     async mineBlock(block: NotMinedBlock): Promise<Block>{
         this._isMining = true;
         let hash = '';
