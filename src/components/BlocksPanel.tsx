@@ -9,11 +9,10 @@ const BlocksPanel: React.FC<BlocksPanelProps> = ({ blocks }) => {
   return (
     <>
       <h2>Current blocks</h2>
-      <div className="blocks">
-        <div className="blocks__ribbon">
+      <div className="relative">
+        <div className="flex overflow-y-auto">
           {blocks.map((b, i) => <BlockComponent key={b.hash} index={i} block={b}></BlockComponent>)}
         </div>
-        {/* <div className="blocks__overlay"></div> */}
       </div>
     </>
   );

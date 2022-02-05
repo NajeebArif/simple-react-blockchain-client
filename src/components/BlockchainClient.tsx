@@ -106,8 +106,8 @@ const BlockchainClient: React.FC = () => {
 
   return (
     <main>
-      <h1>Blockchain node</h1>
-      <aside><p>{status}</p></aside>
+      <h1 className='font-bold'>Blockchain node</h1>
+      <aside className='flex space-x-3 rounded'>{status}</aside>
       <section>
         <TransactionForm
           onAddTransaction={addTransaction}
@@ -131,10 +131,10 @@ const BlockchainClient: React.FC = () => {
 function getStatus(node: BlockchainNode): React.ReactElement {
   return <>
   {
-         node.chainIsEmpty          ? <><ClockIcon /> Initializing the blockchain...</> :
-         node.isMining              ? <> <ClockIcon />Mining a new block... </>:
-         node.noPendingTransactions ? <><TerminalIcon /> Add one or more transactions </>:
-                                      <> <CirclieCheckIcon />Ready to mine a new block (transactions: {node.pendingTransactions.length}).</>}</>
+         node.chainIsEmpty          ? <><ClockIcon /> <span>Initializing the blockchain...</span></> :
+         node.isMining              ? <> <ClockIcon /> <span>Mining a new block...</span></>:
+         node.noPendingTransactions ? <><TerminalIcon /> <span>Add one or more transactions</span></>:
+                                      <> <CirclieCheckIcon /> <span>Ready to mine a new block (transactions: {node.pendingTransactions.length}). </span></>}</>
 }
 
 function formatTransactions(transactions: Transaction[]): string {
