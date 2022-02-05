@@ -1,5 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Transaction } from '../lib/blockchain-node';
+import { DownArrowIcon } from './Icons';
+import { Input, Submit } from './Utils';
 
 type TransactionFormProps = {
   onAddTransaction: (transaction: Transaction) => void,
@@ -30,10 +32,10 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onAddTransaction, dis
   }
 
   return (
-    <>
+    <div className='flex flex-col space-y-3'>
       <h2>New transaction</h2>
-      <form className="add-transaction-form" onSubmit={handleFormSubmit}>
-        <input
+      <form className="inline-flex flex-col space-y-3" onSubmit={handleFormSubmit}>
+        <Input
           type="text"
           name="sender"
           placeholder="Sender"
@@ -42,8 +44,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onAddTransaction, dis
           value={formValue.sender}
           onChange={handleInputChange}
         />
-        <span className="hidden-xs">→</span>
-        <input
+        <span className="inline-flex justify-center"><DownArrowIcon /></span>
+        <Input
           type="text"
           name="recipient"
           placeholder="Recipient"
@@ -52,7 +54,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onAddTransaction, dis
           value={formValue.recipient}
           onChange={handleInputChange}
         />
-        <input
+        <Input
           type="number"
           name="amount"
           placeholder="Amount"
@@ -60,9 +62,9 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onAddTransaction, dis
           value={formValue.amount}
           onChange={handleInputChange}
         />
-        <button type="submit" disabled={!isValid || disabled} className="ripple">ADD TRANSACTION</button>
+        <Submit disabled={!isValid || disabled} >ADD TRANSACTION</Submit>
       </form>
-    </>
+    </div>
   );
 }
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import NavBar from './components/NavBar';
 import './App.css';
-import Main from './components/Main';
+import BlockchainClient from './components/BlockchainClient';
 
 function App() {
   return (
     <header>
       <NavBar />
-      <Main />
+      <BlockchainClient />
     </header>
   );
 }

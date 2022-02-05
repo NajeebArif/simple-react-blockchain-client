@@ -75,45 +75,6 @@
     margin: 0;
   }
   
-  /* ADD TRANSACTION FORM */
-  
-  .add-transaction-form {
-    display: grid;
-    grid-template-columns: minmax(100px, 1fr) min-content minmax(100px, 1fr) 100px;
-    grid-auto-flow: row;
-    grid-gap: 15px 10px;
-    align-items: center;
-  }
-  
-  .add-transaction-form button {
-    grid-column: -1 / 1;
-    justify-self: end;
-  }
-  
-  @media (max-width: 599px) {
-    .add-transaction-form {
-      grid-template-columns: 1fr;
-      grid-gap: 5px;
-    }
-  }
-  
-  /* PENDING TRANSACTIONS */
-  
-  .pending-transactions__list {
-    min-height: 70px;
-    margin-bottom: 15px;
-  }
-  
-  .pending-transactions__form {
-    float: right;
-  }
-  
-  @media (max-width: 599px) {
-    .pending-transactions__list {
-      margin-bottom: 5px;
-    }
-  }
-  
   /* BLOCKS PANEL */
   
   .blocks {
@@ -225,45 +186,10 @@
   
   /* FORM CONTROLS */
   
-  input[type=text], input[type=number] {
-    background-color: transparent;
-    border-color: var(--border-color);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 1px;
-    box-shadow: none;
-    box-sizing: border-box;
-    display: block;
-    font-family: var(--default-fonts);
-    font-size: 14px;
-    height: 37px;
-    line-height: 27px;
-    margin: 0px auto;
-    outline: none;
-    padding: 4px 10px;
-    width: 100%;
-  }
-  
   input[disabled] {
     cursor: not-allowed;
   }
   
-  button {
-    background: var(--text-color);
-    border-radius: 5px;
-    border: 1px solid var(--text-color);
-    color: var(--bg-color);
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 500;
-    height: 37px;
-    min-width: 200px;
-    outline: none;
-    padding: 0 25px;
-    text-align: center;
-    text-transform: uppercase;
-    user-select: none;
-  }
   
   button[disabled] {
     background: var(--disabled-color);

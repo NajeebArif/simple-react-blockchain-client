@@ -13,7 +13,7 @@ const BlocksPanel: React.FC<BlocksPanelProps> = ({ blocks }) => {
         <div className="blocks__ribbon">
           {blocks.map((b, i) => <BlockComponent key={b.hash} index={i} block={b}></BlockComponent>)}
         </div>
-        <div className="blocks__overlay"></div>
+        {/* <div className="blocks__overlay"></div> */}
       </div>
     </>
   );
@@ -24,24 +24,25 @@ const BlockComponent: React.FC<{ index: number, block: Block }> = ({ index, bloc
   const timestamp = new Date(block.timestamp).toLocaleTimeString();
 
   return (
-    <div className="block">
-      <div className="block__header">
-        <span className="block__index">#{index}</span>
-        <span className="block__timestamp">{timestamp}</span>
+    <div className="container border-2 shadow-inner m-1 p-2 space-y-3">
+      <div className="flex justify-between mx-2">
+        <span className="font-bold text-xl">#{index}</span>
+        <span className="font-extralight text-slate-700 text-sm">{timestamp}</span>
       </div>
-      <div className="block__hashes">
-        <div className="block__hash">
-          <div className="block__label">← PREV HASH</div>
-          <div className="block__hash-value">{block.previousHash}</div>
+      <div className="flex justify-between font-extralight text-slate-700 text-sm">
+        <div className="w-24">
+          <div >← PREV HASH</div>
+          <div ><p className="truncate overflow-clip">{block.previousHash}</p></div>
         </div>
-        <div className="block__hash">
-          <div className="block__label">THIS HASH</div>
-          <div className="block__hash-value">{block.hash}</div>
+        <div className="w-24">
+          <div>THIS HASH</div>
+          <div><p className="truncate overflow-clip">{block.hash}</p></div>
         </div>
       </div>
-      <div>
-        <div className="block__label">TRANSACTIONS</div>
-        <pre className="block__transactions">{formattedTransactions || 'No transactions'}</pre>
+      <hr />
+      <div className='space-y-3 w-72 max-w-sm'>
+        <div className="font-extralight text-slate-700 text-sm">TRANSACTIONS</div>
+        <pre className="text-sm">{formattedTransactions || 'No transactions'}</pre>
       </div>
     </div>
   );

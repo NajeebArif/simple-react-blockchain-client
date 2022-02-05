@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Block, BlockchainNode, Transaction } from '../lib/blockchain-node';
+import { CirclieCheckIcon, ClockIcon, TerminalIcon } from './Icons';
 import { Message, MessageTypes } from '../lib/message';
 import { WebsocketController } from '../lib/websocket-controller';
 import BlocksPanel from './BlocksPanel';
@@ -9,8 +10,8 @@ import TransactionForm from './TransactionsForm';
 const server = new WebsocketController();
 const node = new BlockchainNode();
 
-const Main: React.FC = () => {
-  const [status, setStatus] = useState<string>('');
+const BlockchainClient: React.FC = () => {
+  const [status, setStatus] = useState<React.ReactElement>();
 
   const handleGetLongestChainRequest = useCallback((message: Message) => {
     server.send({
@@ -127,15 +128,18 @@ const Main: React.FC = () => {
   );
 }
 
-function getStatus(node: BlockchainNode): string {
-  return node.chainIsEmpty          ? '⏳ Initializing the blockchain...' :
-         node.isMining              ? '⏳ Mining a new block...' :
-         node.noPendingTransactions ? '📩 Add one or more transactions.' :
-                                      `✅ Ready to mine a new block (transactions: ${node.pendingTransactions.length}).`;
+function getStatus(node: BlockchainNode): React.ReactElement {
+  return <>
+  {
+         node.chainIsEmpty          ? <><ClockIcon /> Initializing the blockchain...</> :
+         node.isMining              ? <> <ClockIcon />Mining a new block... </>:
+         node.noPendingTransactions ? <><TerminalIcon /> Add one or more transactions </>:
+                                      <> <CirclieCheckIcon />Ready to mine a new block (transactions: {node.pendingTransactions.length}).</>}</>
 }
 
 function formatTransactions(transactions: Transaction[]): string {
   return transactions.map(t =>`${t.sender} → ${t.recipient}: $${t.amount}`).join('\n');
 }
 
-export default Main;
+
+export default BlockchainClient;
