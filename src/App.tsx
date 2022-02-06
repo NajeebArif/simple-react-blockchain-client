@@ -1,4 +1,4 @@
-import NavBar from './components/NavBar';
+import MainPageComponent from './components/NavBar';
 import './App.css';
 import React, { useEffect, useState, useCallback } from 'react';
 import { Block, BlockchainNode, Transaction } from './lib/blockchain-node';
@@ -107,7 +107,7 @@ function App() {
   }
   return (
     <header>
-      <NavBar node={node} status={getStatus(node)} generateBlock={generateBlock} addTransaction={addTransaction}/>
+      <MainPageComponent node={node} status={getStatus(node)} generateBlock={generateBlock} addTransaction={addTransaction}/>
     </header>
   );
 }
