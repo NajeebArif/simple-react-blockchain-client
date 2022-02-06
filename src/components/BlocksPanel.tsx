@@ -2,19 +2,21 @@ import React from 'react';
 import { Block, Transaction } from '../lib/blockchain-node';
 
 type BlocksPanelProps = {
-  blocks: Block[]
+  blocks: Block[],
+  customCss?: string,
 };
 
-const BlocksPanel: React.FC<BlocksPanelProps> = ({ blocks }) => {
+const BlocksPanel: React.FC<BlocksPanelProps> = ({ blocks, customCss }) => {
+  const mainPageCss = "flex overflow-y-auto"
   return (
-    <>
+    <div>
       <h2>Current blocks</h2>
       <div className="relative">
-        <div className="flex overflow-y-auto">
+        <div className={ !!customCss ? customCss : mainPageCss }>
           {blocks.map((b, i) => <BlockComponent key={b.hash} index={i} block={b}></BlockComponent>)}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -23,7 +25,7 @@ const BlockComponent: React.FC<{ index: number, block: Block }> = ({ index, bloc
   const timestamp = new Date(block.timestamp).toLocaleTimeString();
 
   return (
-    <div className="container border-2 shadow-inner m-1 p-2 space-y-3">
+    <div className="border-2 shadow-inner m-1 p-2 space-y-3">
       <div className="flex justify-between mx-2">
         <span className="font-bold text-xl">#{index}</span>
         <span className="font-extralight text-slate-700 text-sm">{timestamp}</span>
